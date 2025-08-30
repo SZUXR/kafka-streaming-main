@@ -17,7 +17,7 @@ kafka-topics --list --bootstrap-server localhost:9092
 
 ---
 
-## 3. 创建 a Kafka Topic
+## 3. 创建一个 Kafka Topic
 
 Create a topic named `orders` with 4 partitions and a replication factor of 1:
 

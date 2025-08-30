@@ -6,6 +6,7 @@ import random
 from datetime import datetime
 import time
 
+# 定义一个函数来生成随机订单数据（数据类型为Python字典）
 def generate_order():
 
     countries = [
@@ -30,6 +31,8 @@ def generate_order():
 
     return order
 
+
+
 def main():
     config = {
         "bootstrap.servers": "192.168.0.31:9092",
@@ -39,11 +42,13 @@ def main():
 
     topic = "orders"
 
+    # 定义一个回调函数来处理消息传递结果（成功或失败）
     def delivery_callback(err, msg):
         if err:
             print("ERROR: Message failed delivery: {}".format(err))
         else:
             print(
+                # 使用textwrap.dedent来格式化多行字符串，去除多余的缩进
                   textwrap.dedent(
                 f"""
                     Produced event to topic {msg.topic()}:
@@ -58,8 +63,8 @@ def main():
 
         producer.produce(
             topic,
-            key = str(order["customer_id"]),
-            value = json.dumps(order),
+            key = str(order["customer_id"]),# key用作分区
+            value = json.dumps(order),# 将Python字典转换为JSON字符串（序列化）
             callback = delivery_callback
         )
         producer.poll(0)
