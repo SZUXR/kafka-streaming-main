@@ -5,13 +5,13 @@ from confluent_kafka import Consumer
 
 def main():
     parser = argparse.ArgumentParser(description="Kafka Consumer Example")
-    parser.add_argument("--topic-name", "-t", help="Topic name ")
-    parser.add_argument("--group-id", "-g", help="Consumer group ID")
-    parser.add_argument("--name", "-n", help="Consumer name")
+    parser.add_argument("--topic-name", "-t", default="orders", help="Topic name ")
+    parser.add_argument("--group-id", "-g", default="my-group", help="Consumer group ID")
+    parser.add_argument("--name", "-n", default="consumer1", help="Consumer name")
 
     args = parser.parse_args()
 
-    group_id = args.grouop_id
+    group_id = args.group_id
     topic_name = args.topic_name
     consumer_name = args.name
 

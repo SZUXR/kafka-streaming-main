@@ -35,7 +35,7 @@ def generate_order():
 
 def main():
     config = {
-        "bootstrap.servers": "192.168.0.31:9092",
+        "bootstrap.servers": "node1:9092",
     }
 
     producer = Producer(config)
